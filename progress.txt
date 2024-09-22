@@ -1,0 +1,16 @@
+Membuat Sistem Perpustakaan Digital menggunakan Codeigniter 3
+
+-Download framework codeigniter 3
+-Buat database
+	-tabel user
+	-tabel buku
+	-tabel kategori
+		ketika membuat tabel user bagian password, value harus lebih dari 32
+		karena password akan dienkripsi menggunakan md5, metode md5 
+		mengenkripsi password menjadi huruf dan angka acak sebanyak 32 char
+
+-Setup Codeigniter 3
+-Templating Layout
+-Membuat CRUD user
+-Membuat CRUD kategori
+-Membuat CRUD Buku
