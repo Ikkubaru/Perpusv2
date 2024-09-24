@@ -76,7 +76,7 @@
                                                 <td><img src="<?=base_url('assets/cover/'.$book['cover']) ?>" width="150px" height="200px"></td>
                                                 <td><?= $book['status'] ?></td>
                                                 <td>
-                                                    <a href="<?= base_url('admin/Books/booksDelete/'.$book['booksID']) ?>" class="btn btn-danger" onClick="confirm('Yakin Ingin Menghapus?')">Delete</a>
+                                                    <a href="<?= base_url('admin/Books/booksDelete/'.$book['booksID']) ?>" class="btn btn-danger" onClick="return confirm('Yakin Ingin Menghapus?')">Delete</a>
                                                     <a href="<?= base_url('admin/Books/booksEdit/'.$book['booksID']) ?>" class="btn btn-warning">Edit</a>
                                                 </td>
                                             </tr>

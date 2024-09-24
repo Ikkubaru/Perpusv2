@@ -49,4 +49,9 @@ class Books extends CI_Controller {
         $this->db->insert('books',$data);
         redirect('admin/Books');
     }
+    public function booksDelete($booksID){
+        $where = array('booksID' => $booksID);
+        $this->db->delete('books',$where);
+        redirect('admin/Books');
+    }
 }
