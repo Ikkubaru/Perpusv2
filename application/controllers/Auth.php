@@ -17,6 +17,7 @@ class Auth extends CI_Controller {
 		// KONDIS PERTAMA FORM NULL / KOSONG
 		if($query == NULL){
 			echo "<script>alert('username salah');</scipt>";
+			// DIREDIRECT JIKA USERNAME SALAH
 			redirect('Auth');
 		}elseif($query->password == $password){
 			$data = array(
@@ -28,11 +29,22 @@ class Auth extends CI_Controller {
 				'level'=>$query->level,
 			);
 			$this->session->set_userdata($data);
-			redirect('Admin/Dashboard');
+			if($this->session->userdata('level')=='admin'){
+				redirect('Admin/Dashboard');
+			}elseif($this->session->userdata('level')=='petugas'){
+				redirect('Admin/Dashboard');
+			}else{
+				redirect('Home');
+			}
 		}else{
 			echo '<script>alert("password salah")</scipt>';
+			// DIREDIRECT JIKA USERNAME / PASSWORD SALAH
 			redirect('Auth');
 		}
+	}
+	public function logout(){
+		$this->session->sess_destroy();
+        redirect('home');
 	}
 	public function register(){
 		$this->load->view('register');

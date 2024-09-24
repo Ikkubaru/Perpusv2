@@ -20,7 +20,7 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{username} <i class="fa fa-angle-down"></i></a>
                             <div class="dropdown-menu dropdown-menu-right user-dd animated">
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
+                                <a class="dropdown-item" href="<?= base_url('Auth/logout') ?>"><i class="fa fa-power-off m-r-5 m-l-5"></i>Logout</a>
                             </div>
                         </li>
                         <!-- ============================================================== -->
