@@ -34,8 +34,6 @@ class Books extends CI_Controller {
         $config['allowed_types'] ='*';
         $this->upload->initialize($config);
         if(!$this->upload->do_upload('cover')){
-            // $error = array($this->upload->display_errors());
-            // print_r($error);
             return;
         }
         else{
@@ -58,5 +56,48 @@ class Books extends CI_Controller {
         $where = array('booksID' => $booksID);
         $this->db->delete('books',$where);
         redirect('admin/Books');
+    }
+    public function booksEdit($booksID){
+        $this->db->from('books')->where('booksID',$booksID);
+        $books = $this->db->get()->row();
+        $data = array('books'=>$books);
+        $this->load->view('layout/_head');
+		$this->load->view('layout/_header');
+		$this->load->view('layout/_sidebar');
+		$this->load->view('admin/booksEdit',$data);
+		$this->load->view('layout/_footer');
+    }
+    public function booksUpdate($booksID){
+        // LOAD LIBRARY UPLOAD
+        $this->load->library('upload');
+        // PATH COVER
+        $config['upload_path'] = './assets/cover';
+        // TIPE FILE YANG DIIZINKAN
+        $config['allowed_types'] ='*';
+        // INISIALISASI CONFIG
+        $this->upload->initialize($config);
+        // CARI NILAI COVER SEBELUMNYA DARI DATABASE
+        $bookCover = $this->db->from('books')->where('booksiD',$booksID)->get()->row();
+        $current_cover = $bookCover->cover;
+        // KONDISI JIKA ADA COVER YANG DIUPLOAD
+        if($this->upload->do_upload('cover')){
+            // $COVER MENGAMBIL NILAI GAMBAR YANG BARU DIUPLOAD
+            $cover_data = $this->upload->data();
+            $cover = $cover_data['file_name']; 
+        }else{
+            // JIKA TIDAK ADA GAMBAR YANG DIUPLOAD COVER AKAN MENGAMBIL NILAI SEBELUMNYA
+            $cover = $current_cover;
+        }
+
+        $data = array(
+            'title' => $this->input->post('title'),
+            'author' => $this->input->post('author'),
+            'releaseYear' => $this->input->post('releaseYear'),
+            'synopsis' => $this->input->post('synopsis'),
+            'status' => $this->input->post('status'),
+            'cover' => $cover,
+        );
+        var_dump($data);
+        die;
     }
 }

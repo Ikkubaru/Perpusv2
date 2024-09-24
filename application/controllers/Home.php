@@ -7,7 +7,9 @@ class Home extends CI_Controller {
 	{
 		$this->db->from('books');
 		$books = $this->db->get()->result_array();
-		$data = array('books'=>$books);
+		$this->db->from('categories');
+		$categories = $this->db->get()->result_array();
+		$data = array('books'=>$books,'categories' => $categories);
         $this->load->view('homepage',$data);
 	}
 }
