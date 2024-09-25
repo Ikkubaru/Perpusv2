@@ -97,7 +97,8 @@ class Books extends CI_Controller {
             'status' => $this->input->post('status'),
             'cover' => $cover,
         );
-        var_dump($data);
-        die;
+        $where = array('booksID'=>$booksID);
+        $this->db->update('books',$data,$where);
+        redirect('Admin/books');
     }
 }
